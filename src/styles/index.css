@@ -1,0 +1,140 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Design tokens. Values are "R G B" channels so Tailwind can apply opacity.
+ * Palette roles: primary = midnight navy, accent = antique gold (~10%),
+ * neutrals = warm ivory/stone, supporting = sage.
+ */
+@layer base {
+  :root {
+    --color-bg: 250 248 244; /* #FAF8F4 ivory */
+    --color-surface: 255 255 255; /* #FFFFFF */
+    --color-surface-muted: 243 239 232; /* #F3EFE8 soft stone */
+    --color-surface-sage: 234 238 232; /* #EAEEE8 sage tint */
+    --color-border: 226 220 209; /* #E2DCD1 */
+    --color-fg: 33 36 43; /* #21242B deep charcoal */
+    --color-muted: 85 94 108; /* #555E6C slate gray */
+    --color-heading: 31 42 68; /* #1F2A44 */
+    --color-primary: 31 42 68; /* #1F2A44 midnight navy */
+    --color-primary-hover: 44 58 92; /* #2C3A5C */
+    --color-primary-fg: 250 248 244; /* #FAF8F4 */
+    --color-header: 31 42 68; /* #1F2A44 */
+    --color-header-fg: 243 239 232; /* #F3EFE8 */
+    --color-accent: 176 141 87; /* #B08D57 antique gold (decorative) */
+    --color-accent-strong: 132 101 54; /* #846536 gold for text on light */
+    --color-accent-fg: 31 42 68; /* text on gold */
+    --color-sage: 107 127 106; /* #6B7F6A */
+    --color-sage-strong: 79 97 78; /* #4F614E */
+    --color-whatsapp: 46 112 75; /* #2E704B desaturated WhatsApp green */
+    --color-whatsapp-hover: 37 94 62; /* #255E3E */
+    --color-whatsapp-fg: 255 255 255;
+    --color-danger: 155 50 50; /* #9B3232 */
+    --color-success: 79 97 78; /* #4F614E */
+    --color-shadow: 31 42 68;
+
+    /* Placeholder image gradients */
+    --ph-navy-from: 31 42 68;
+    --ph-navy-to: 78 92 126;
+    --ph-sage-from: 107 127 106;
+    --ph-sage-to: 200 211 196;
+    --ph-gold-from: 176 141 87;
+    --ph-gold-to: 238 227 205;
+    --ph-stone-from: 222 215 202;
+    --ph-stone-to: 247 244 238;
+    --ph-ink-light: 250 248 244;
+    --ph-ink-dark: 31 42 68;
+
+    /* Fixed (theme-independent) colors for text placed over imagery */
+    --color-on-image: 250 248 244; /* #FAF8F4 */
+    --color-on-image-accent: 214 188 143; /* #D6BC8F */
+    --color-scrim: 12 17 28; /* #0C111C */
+
+    --header-height: 5rem;
+    --header-height-condensed: 4rem;
+    color-scheme: light;
+  }
+
+  [data-theme='dark'] {
+    --color-bg: 17 21 31; /* #11151F */
+    --color-surface: 26 32 46; /* #1A202E */
+    --color-surface-muted: 31 38 54; /* #1F2636 */
+    --color-surface-sage: 28 38 36; /* #1C2624 */
+    --color-border: 47 56 75; /* #2F384B */
+    --color-fg: 234 230 222; /* #EAE6DE */
+    --color-muted: 169 176 190; /* #A9B0BE */
+    --color-heading: 228 222 210; /* #E4DED2 */
+    --color-primary: 201 165 110; /* #C9A56E gold becomes the action color */
+    --color-primary-hover: 216 186 138; /* #D8BA8A */
+    --color-primary-fg: 17 21 31; /* #11151F */
+    --color-header: 22 27 39; /* #161B27 */
+    --color-header-fg: 234 230 222;
+    --color-accent: 201 165 110; /* #C9A56E */
+    --color-accent-strong: 212 180 127; /* #D4B47F */
+    --color-accent-fg: 17 21 31;
+    --color-sage: 138 160 137; /* #8AA089 */
+    --color-sage-strong: 160 181 159; /* #A0B59F */
+    --color-whatsapp: 46 112 75; /* #2E704B */
+    --color-whatsapp-hover: 56 132 89; /* #388459 */
+    --color-whatsapp-fg: 255 255 255;
+    --color-danger: 230 140 130; /* #E68C82 */
+    --color-success: 160 181 159;
+    --color-shadow: 0 0 0;
+
+    --ph-navy-from: 24 32 52;
+    --ph-navy-to: 56 68 100;
+    --ph-sage-from: 52 66 56;
+    --ph-sage-to: 92 112 94;
+    --ph-gold-from: 110 88 56;
+    --ph-gold-to: 60 52 42;
+    --ph-stone-from: 36 42 56;
+    --ph-stone-to: 58 64 80;
+    --ph-ink-light: 234 230 222;
+    --ph-ink-dark: 212 180 127;
+    color-scheme: dark;
+  }
+
+  html {
+    @apply bg-bg text-fg antialiased;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply min-h-screen bg-bg font-sans text-base leading-relaxed text-fg;
+    transition:
+      background-color 300ms ease,
+      color 300ms ease;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-serif font-semibold tracking-tight text-heading;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-bg;
+  }
+
+  ::selection {
+    @apply bg-accent/30;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .gold-rule {
+    @apply mx-auto h-px w-16 bg-accent;
+  }
+}
